@@ -11,6 +11,33 @@ Compatible with Windows, Linux and MAC.
 - Work online mode or offline  (a.k.a. LAN mode or Zeroconf)
 
 
+## Basic usage
+
+```c#
+var ewelink = new Ewelink(Email, Password, Region);
+await ewelink.GetCredentials();
+await ewelink.GetDevices();
+
+var device = ewelink.Devices.First(x=> x.deviceid == deviceId) as SwitchDevice;
+device.TurnOn();
+```
+
+### Get Credentials
+
+```c#
+var ewelink = new Ewelink(Email, Password, Region);
+var credentials = await ewelink.GetCredentials();
+```
+
+### Get Devices
+```c#
+var ewelink = new Ewelink(Email, Password, Region);
+await ewelink.GetCredentials();
+await ewelink.GetDevices();
+```
+
+
+
 ## Todo
 - [x] Get credentials
 - [x] Get devices
