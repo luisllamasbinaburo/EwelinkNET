@@ -33,8 +33,7 @@ var credentials = await ewelink.GetCredentials();
 
 Alternately, you can save credentials to avoid login.
 ```c#
-var ewelink = new Ewelink(Email, Password, Region);
-var credentials = await ewelink.GetCredentials();
+ewelink.StoreCredenditalsFromFile();
 ```
 
 And later restore with
