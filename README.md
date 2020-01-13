@@ -25,9 +25,21 @@ device.TurnOn();
 
 ### Get Credentials
 
+Use Email, Password and Region to get Ewelink credentials, that includes required information to perform actions.
 ```c#
 var ewelink = new Ewelink(Email, Password, Region);
 var credentials = await ewelink.GetCredentials();
+```
+
+Alternately, you can save credentials to avoid login.
+```c#
+var ewelink = new Ewelink(Email, Password, Region);
+var credentials = await ewelink.GetCredentials();
+```
+
+And later restore with
+```c#
+ewelink.RestoreCredenditalsFromFile();
 ```
 
 ### Get Devices
