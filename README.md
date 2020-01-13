@@ -18,6 +18,5 @@ Compatible with Windows, Linux and MAC.
 - [x] Get measurements
 - [x] Websockets listening
 - [x] Zeroconf (LAN mode)
-- [ ] Uranus
 - [ ] Add more devices
 - [ ] Improve tests
