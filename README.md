@@ -4,7 +4,7 @@ EwelinkNET is an API writen in .NET Standard to interact directly with eWeLink A
 Compatible with Windows, Linux and MAC.
 
 
-## Key features
+### Key features
 - Set on/off devices
 - Read data measurements (humidity, temperature...)
 - Listen for devices events (through websockets)
@@ -62,16 +62,39 @@ All of them are derived classes of generic `Device` class
 ### Interact with devices
 
 Each class provides here own methods to perform actions or retrieve measurement.
-For example, `SwitchDevice` provides
+For example, `ThermostatDevice` provides
 - TurnOn()
 - TurnOff()
 - Toggle()
+- GetTemperature()
+- GetHumidity()
 
 And, `MultiSwitchDevice` provides
 - TurnOn()
 - TurnOn(int channel)
 - TurnOff()
 - TurnOff(int channel)
+
+### Listen to device changes
+
+Changes in devices status are obtain through websocket connection, and provided events.
+```c#
+ewelink.websocket.OnMessage += (s, e) => Console.WriteLine(e.AsJson());
+ewelink.OpenWebsocket();
+```
+
+Loaded devices states are updated accordly with new state.
+
+### Zeroconf (LAN mode)
+
+It's possible to interact with eWelink devices throught LAN mode, without the need or internet connection or access to eWelink link.
+- TurnOnLAN()
+- TurnOffLAN()
+
+For LAN mode to work, a ArpTable (and list or the Mac - Ip relationship) has to be provided, to allow find the device Ip.
+```c#
+ewelink.RestoreArpTableFromFile();
+```
 
 
 ## Todo
