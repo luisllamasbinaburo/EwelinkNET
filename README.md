@@ -104,5 +104,6 @@ ewelink.RestoreArpTableFromFile();
 - [x] Get measurements
 - [x] Websockets listening
 - [x] Zeroconf (LAN mode)
-- [ ] Add more devices
+- [ ] Add/test more devices
+- [ ] Improve documentation/examples
 - [ ] Improve tests
