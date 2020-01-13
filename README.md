@@ -42,12 +42,36 @@ ewelink.RestoreCredenditalsFromFile();
 ```
 
 ### Get Devices
+
+Get Devices registered in you Ewelink account.
 ```c#
 var ewelink = new Ewelink(Email, Password, Region);
 await ewelink.GetCredentials();
 await ewelink.GetDevices();
 ```
 
+Devices are converted to one of the following classes
+- SwitchDevice
+- MultiSwitchDevice
+- ThermostatDevice
+- RFBridgeDevice
+- CurtainDevice
+
+All of them are derived classes of generic `Device` class
+
+### Interact with devices
+
+Each class provides here own methods to perform actions or retrieve measurement.
+For example, `SwitchDevice` provides
+- TurnOn()
+- TurnOff()
+- Toggle()
+
+And, `MultiSwitchDevice` provides
+- TurnOn()
+- TurnOn(int channel)
+- TurnOff()
+- TurnOff(int channel)
 
 
 ## Todo
