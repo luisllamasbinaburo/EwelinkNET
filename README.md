@@ -1,6 +1,6 @@
 # EwelinkNET
 
-EwelinkNET is an API who let you interact directly with eWeLink API using your regular credentials, writen in .NET Standard
+EwelinkNET is an API writen in .NET Standard to interact directly with eWeLink API using your regular credentials.
 Compatible with Windows, Linux and MAC.
 
 
@@ -9,6 +9,7 @@ Compatible with Windows, Linux and MAC.
 - Read data measurements (humidity, temperature...)
 - Listen for devices events (through websockets)
 - Work online mode or offline  (a.k.a. LAN mode or Zeroconf)
+- Compatible with Windows, Linux and MAC.
 
 
 ## Basic usage
