@@ -9,3 +9,15 @@ Compatible with Windows, Linux and MAC.
 - Read data measurements (humidity, temperature...)
 - Listen for devices events (through websockets)
 - Work online mode or offline  (a.k.a. LAN mode or Zeroconf)
+
+
+## Todo
+- [x] Get credentials
+- [x] Get devices
+- [x] Set on/off
+- [x] Get measurements
+- [x] Websockets listening
+- [x] Zeroconf (LAN mode)
+- [ ] Uranus
+- [ ] Add more devices
+- [ ] Improve tests
