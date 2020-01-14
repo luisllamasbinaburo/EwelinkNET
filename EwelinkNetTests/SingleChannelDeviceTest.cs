@@ -92,5 +92,16 @@ namespace EwelinkNet.Tests
             device.SetPulse("on", 5000);
         }
 
+        [Fact]
+        public async void SetStartup()
+        {
+            var ewelink = new Ewelink(Email, Password, Region);
+            var credentials = await ewelink.GetCredentials();
+            await ewelink.GetDevices();
+
+            var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
+            device.SetStartup("on");
+        }
+
     }
 }

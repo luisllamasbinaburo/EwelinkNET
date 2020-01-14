@@ -20,8 +20,6 @@ namespace EwelinkNet.Payloads
 
         public string sequence { get; internal set; }
 
-        public string state { get; internal set; } = "on";
-
         internal WsUpdatePayload(string deviceId, string apiKey, object @params)
         {
             var seq = EwelinkHelper.MakeSequence();
