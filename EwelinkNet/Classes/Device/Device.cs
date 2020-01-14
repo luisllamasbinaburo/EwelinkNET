@@ -43,7 +43,6 @@ namespace EwelinkNet.Classes
         public int __v { get; set; }
 
         public ExtraRoot extra { get; set; }
-        public Settings settings { get; set; }
         public List<string> groups { get; set; }
 
         public dynamic devConfig { get; set; } = new ExpandoObject();
@@ -51,6 +50,7 @@ namespace EwelinkNet.Classes
         public dynamic @params { get; set; } = new ExpandoObject();
         public dynamic tags { get; set; } = new ExpandoObject();
         public dynamic sharedTo { get; set; } = new ExpandoObject();
+        public dynamic settings { get; set; } = new ExpandoObject();
 
 
         public override string ToString() => $"{name} {deviceid}";
