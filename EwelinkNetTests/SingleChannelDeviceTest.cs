@@ -34,7 +34,7 @@ namespace EwelinkNet.Tests
             deviceName = testData.singleChannelDeviceName;
         }
 
-          
+
         [Fact]
         public async void GetState()
         {
@@ -42,11 +42,11 @@ namespace EwelinkNet.Tests
             var credentials = await ewelink.GetCredentials();
             await ewelink.GetDevices();
 
-            var device = ewelink.Devices.First(x=> x.deviceid == deviceId) as SwitchDevice;
+            var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
             var state = device.GetState();
 
             output.WriteLine(state);
-        }   
+        }
 
         [Fact]
         public async void TurnOnDevice()
@@ -55,7 +55,7 @@ namespace EwelinkNet.Tests
             var credentials = await ewelink.GetCredentials();
             await ewelink.GetDevices();
 
-            var device = ewelink.Devices.First(x=> x.deviceid == deviceId) as SwitchDevice;
+            var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
             device.TurnOn();
         }
 
@@ -80,6 +80,17 @@ namespace EwelinkNet.Tests
             var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
             device.Toggle();
         }
-     
+
+        [Fact]
+        public async void SetPulse()
+        {
+            var ewelink = new Ewelink(Email, Password, Region);
+            var credentials = await ewelink.GetCredentials();
+            await ewelink.GetDevices();
+
+            var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
+            device.SetPulse("on", 5000);
+        }
+
     }
 }

@@ -24,5 +24,17 @@ namespace EwelinkNet.Classes
  
             await ZeroConfUpdateDevice(data);
         }
+
+        public void SetPulse(string state, int width)
+        {
+            if(width < Constants.Pulse.PULSE_MIN_WIDTH) width = Constants.Pulse.PULSE_MIN_WIDTH;
+            if(width > Constants.Pulse.PULSE_MAX_WIDTH) width = Constants.Pulse.PULSE_MAX_WIDTH;
+            
+            dynamic data = new ExpandoObject();
+            data.pulse = state;
+            data.pulseWidth = width;
+
+            UpdateDevice(data);
+        }
     }
 }
