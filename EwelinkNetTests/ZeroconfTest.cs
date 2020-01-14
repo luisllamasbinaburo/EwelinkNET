@@ -60,7 +60,7 @@ namespace EwelinkNet.Tests
         }
 
         [Fact]
-        public void LANTurnON()
+        public async void LANTurnON()
         {
             var ewelink = new Ewelink("", "", "");
             ewelink.Arptable.RestoreFromFile();
@@ -69,7 +69,7 @@ namespace EwelinkNet.Tests
 
             var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
 
-            device.TurnOnLAN();
+            await device.TurnOnLAN();
         }
     }
 }

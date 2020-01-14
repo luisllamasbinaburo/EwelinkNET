@@ -12,8 +12,8 @@ namespace EwelinkNet.Classes
         public void TurnOn() => SetState("on");
         public void Toggle() => (GetState() == "on" ? (Action)TurnOff : (Action)TurnOn)();
   
-        public void TurnOnLAN() => SetStateLAN("on");
-        public void TurnOffLAN() => SetStateLAN("off");
+        public async Task TurnOnLAN() => await SetStateLAN("on");
+        public async Task TurnOffLAN() => await SetStateLAN("off");
 
         public string GetState() => @params.@switch;
 

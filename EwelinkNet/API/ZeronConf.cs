@@ -11,7 +11,7 @@ namespace EwelinkNet.API
 {
     public static class ZeronConf
     {
-        public static string UpdateDevice(string url, string deviceId, string deviceKey, string selfApiKey, object @params)
+        public static async Task<string> UpdateDevice(string url, string deviceId, string deviceKey, string selfApiKey, object @params)
         {
             var client = new RestClient(url);
             var request = new RestRequest("/switch", Method.POST);
@@ -23,7 +23,7 @@ namespace EwelinkNet.API
             request.RequestFormat = DataFormat.Json;
 
             var cancellationTokenSource = new CancellationTokenSource();
-            var response = client.Execute(request);
+            var response = await client.ExecuteAsync(request, cancellationTokenSource.Token);
 
             return response.Content;
 

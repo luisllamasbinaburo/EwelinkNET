@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using EwelinkNet.API;
 using EwelinkNet.Helpers.Extensions;
 using EwelinkNet.Payloads;
@@ -80,10 +81,10 @@ namespace EwelinkNet.Classes
             if (!isPreviouslyConnected) context.CloseWebSocket();
         }
 
-        public void ZeroConfUpdateDevice(object payload)
+        public async Task ZeroConfUpdateDevice(object payload)
         {
             var url = Constants.URLs.GetZeroconfUrl(GetIp().ToString());
-            ZeronConf.UpdateDevice(url, deviceid, devicekey, apikey, payload);
+            await ZeronConf.UpdateDevice(url, deviceid, devicekey, apikey, payload);
         }
     }
 }

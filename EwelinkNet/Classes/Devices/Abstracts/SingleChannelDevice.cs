@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EwelinkNet.Classes
 {
@@ -16,12 +17,12 @@ namespace EwelinkNet.Classes
             UpdateDevice(data);
         }
 
-        public void SetStateLAN(string state)
+        public async Task SetStateLAN(string state)
         {
             dynamic data = new ExpandoObject();
             ExpandoHelpers.AddProperty(data, channelName, state);
  
-            ZeroConfUpdateDevice(data);
+            await ZeroConfUpdateDevice(data);
         }
     }
 }
