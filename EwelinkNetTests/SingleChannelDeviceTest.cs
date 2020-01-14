@@ -19,6 +19,7 @@ namespace EwelinkNet.Tests
         private readonly string Password;
         private readonly string Region;
         private readonly string deviceId;
+        private readonly string deviceName;
 
 
         public SingleChannelDeviceTest(ITestOutputHelper output)
@@ -30,6 +31,7 @@ namespace EwelinkNet.Tests
             Password = testData.password;
             Region = testData.region;
             deviceId = testData.singleChannelDeviceId;
+            deviceName = testData.singleChannelDeviceName;
         }
 
           

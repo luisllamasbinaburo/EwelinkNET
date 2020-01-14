@@ -18,6 +18,8 @@ namespace EwelinkNet.Tests
         private readonly string Email;
         private readonly string Password;
         private readonly string Region;
+        private readonly string deviceId;
+        private readonly string deviceName;
 
 
         public DevicesTest(ITestOutputHelper output)
@@ -28,6 +30,8 @@ namespace EwelinkNet.Tests
             Email = testData.email;
             Password = testData.password;
             Region = testData.region;
+            deviceId = testData.singleChannelDeviceId;
+            deviceName = testData.singleChannelDeviceName;
         }
 
 
@@ -41,5 +45,28 @@ namespace EwelinkNet.Tests
             output.WriteLine(ewelink.Devices.AsJson());
         }
 
+        [Fact]
+        public async void GetDeviceByDeviceId()
+        {
+            var ewelink = new Ewelink(Email, Password, Region);
+            var credentials = await ewelink.GetCredentials();
+            await ewelink.GetDevices();
+
+            var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
+
+            output.WriteLine(device.AsJson());
+        }
+
+        [Fact]
+        public async void GetDeviceByDeviceName()
+        {
+            var ewelink = new Ewelink(Email, Password, Region);
+            var credentials = await ewelink.GetCredentials();
+            await ewelink.GetDevices();
+
+            var device = ewelink.Devices.First(x => x.name.Contains(deviceName, StringComparison.OrdinalIgnoreCase)) as SwitchDevice;
+
+            output.WriteLine(device.AsJson());
+        }
     }
 }
