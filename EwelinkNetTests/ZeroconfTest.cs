@@ -51,7 +51,7 @@ namespace EwelinkNet.Tests
         {
             var ewelink = new Ewelink("", "", "");
             ewelink.RestoreDevicesFromFile();
-            ewelink.Arptable.RestoreFromFile();
+            ewelink.RestoreArpTableFromFile();
 
             Device device = ewelink.Devices.First();
             var ip = device.GetIp();
@@ -63,9 +63,9 @@ namespace EwelinkNet.Tests
         public async void LANTurnON()
         {
             var ewelink = new Ewelink("", "", "");
-            ewelink.Arptable.RestoreFromFile();
             ewelink.RestoreDevicesFromFile();
             ewelink.RestoreCredenditalsFromFile();
+            ewelink.RestoreArpTableFromFile();
 
             var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
 
