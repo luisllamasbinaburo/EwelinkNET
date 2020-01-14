@@ -49,10 +49,9 @@ namespace EwelinkNet
             this.region = region;
         }
 
-        public Ewelink(string credentialsFile, string devicesFile = null)
+        public Ewelink(string credentialsFile)
         {
             RestoreCredenditalsFromFile(credentialsFile);
-            if (devicesFile != null) RestoreCredenditalsFromFile(devicesFile);
         }
 
         public async Task<Credentials> GetCredentials()
@@ -62,6 +61,16 @@ namespace EwelinkNet
             var response = await API.Rest.GetCredentials(url, email, password);
             Credentials = JsonConvert.DeserializeObject<Credentials>(response);
             return Credentials;
+        }
+
+        public async Task<string> GetRegion()
+        {
+            var url = Constants.URLs.GetApiUrl("us");
+
+            var response = await API.Rest.GetCredentials(url, email, password);
+            dynamic credentials = JsonConvert.DeserializeObject<ExpandoObject>(response);
+            region = credentials.region;
+            return region;
         }
 
         public void StoreCredenditalsFromFile(string filename = "credentials.json") => System.IO.File.WriteAllText(filename, Credentials.AsJson());
