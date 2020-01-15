@@ -36,7 +36,7 @@ Alternately, you can save credentials to avoid login.
 ewelink.StoreCredenditalsFromFile();
 ```
 
-And later restore with
+And later restore with,
 ```c#
 ewelink.RestoreCredenditalsFromFile();
 ```
@@ -50,18 +50,18 @@ await ewelink.GetCredentials();
 await ewelink.GetDevices();
 ```
 
-Devices are converted to one of the following classes
+Devices are converted to one of the following classes.
 - SwitchDevice
 - MultiSwitchDevice
 - ThermostatDevice
 - RFBridgeDevice
 - CurtainDevice
 
-All of them are derived classes of generic `Device` class
+All of them are derived classes of generic `Device` class.
 
 ### Interact with devices
 
-Each class provides here own methods to perform actions or retrieve measurement.
+Each class provides there own methods to perform actions or retrieve measurement.
 For example, `ThermostatDevice` provides
 - TurnOn()
 - TurnOff()
@@ -87,7 +87,7 @@ Loaded devices states are updated accordly with new state.
 
 ### Zeroconf (LAN mode)
 
-It's possible to interact with eWelink devices throught LAN mode, without the need or internet connection or access to eWelink link.
+It's possible to interact with eWelink devices throught LAN mode, without the need of internet connection or access to eWelink cloud.
 - TurnOnLAN()
 - TurnOffLAN()
 
