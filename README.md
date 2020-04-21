@@ -79,8 +79,8 @@ And, `MultiSwitchDevice` provides
 
 Changes in devices status are obtain through websocket connection, and provided events.
 ```c#
-ewelink.websocket.OnMessage += (s, e) => Console.WriteLine(e.AsJson());
-ewelink.OpenWebsocket();
+ewelink.OnDeviceChanged += (s, e) => Console.WriteLine(e.AsJson());
+ewelink.OpenWebSocket();
 ```
 
 Loaded devices states are updated accordly with new state.
