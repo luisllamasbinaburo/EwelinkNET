@@ -29,6 +29,10 @@ namespace EwelinkNet.API
             websocket = new WebSocketSharp.WebSocket(url);
 
             websocket.OnMessage += Websocket_OnMessage;
+
+            websocket.OnClose += (a, s) => IsConnected = false;
+            websocket.OnError += (a, s) => websocket.Close();
+
             websocket.Connect();
             IsConnected = true;
 

@@ -106,11 +106,15 @@ namespace EwelinkNet
             deviceCache = Devices.ToDictionary(x => x.deviceid);
         }
 
+        private void InitializeWebSocket()
+        { 
+            webSocket.OnMessage += handleWebsocketResponse;
+        }
+
         public void OpenWebSocket()
         {
             if (webSocket.IsConnected) return;
             webSocket.Connect(Credentials.at, Devices[0].apikey, Credentials.region);
-            webSocket.OnMessage += handleWebsocketResponse;
         }
 
         private void handleWebsocketResponse(object sender, EventWebsocketMessage e)
@@ -128,7 +132,6 @@ namespace EwelinkNet
         public void CloseWebSocket()
         {
             if (!webSocket.IsConnected) return;
-            webSocket.OnMessage -= handleWebsocketResponse;
             webSocket.Disconnect();
         }
     }
