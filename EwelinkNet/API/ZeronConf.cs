@@ -11,10 +11,10 @@ namespace EwelinkNet.API
 {
     public static class ZeronConf
     {
-        public static async Task<string> UpdateDevice(string url, string deviceId, string deviceKey, string selfApiKey, object @params)
+        public static async Task<string> UpdateDevice(string url, string endpoint, string deviceId, string deviceKey, string selfApiKey, object @params)
         {
             var client = new RestClient(url);
-            var request = new RestRequest("/switch", Method.POST);
+            var request = new RestRequest(endpoint, Method.POST);
 
             var payload = new ZeroConfUpdatePayload(deviceId, deviceKey, selfApiKey, JsonConvert.SerializeObject(@params));
             var body = JsonConvert.SerializeObject(payload);

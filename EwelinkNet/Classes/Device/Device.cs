@@ -81,10 +81,10 @@ namespace EwelinkNet.Classes
             if (!isPreviouslyConnected) context.CloseWebSocket();
         }
 
-        public async Task ZeroConfUpdateDevice(object payload)
+        public async Task ZeroConfUpdateDevice(object payload, string endpoint)
         {
             var url = Constants.URLs.GetZeroconfUrl(GetIp().ToString());
-            await ZeronConf.UpdateDevice(url, deviceid, devicekey, apikey, payload);
+            await ZeronConf.UpdateDevice(url, endpoint, deviceid, devicekey, apikey, payload);
         }
     }
 }

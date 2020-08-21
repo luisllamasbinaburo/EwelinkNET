@@ -23,7 +23,7 @@ namespace EwelinkNet.Classes
             dynamic data = new ExpandoObject();
             ExpandoHelpers.AddProperty(data, channelName, state);
  
-            await ZeroConfUpdateDevice(data);
+            await ZeroConfUpdateDevice(data, "/switch");
         }
 
         public void SetPulse(string state, int width)

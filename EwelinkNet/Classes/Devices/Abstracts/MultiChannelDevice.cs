@@ -45,7 +45,7 @@ namespace EwelinkNet.Classes
             dynamic data = new ExpandoObject();
             ExpandoHelpers.AddProperty(data, channelName, states);
 
-            ZeroConfUpdateDevice(data);
+            ZeroConfUpdateDevice(data, "/switches");
         }
     }
 }
