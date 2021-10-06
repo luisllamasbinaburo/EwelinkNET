@@ -73,7 +73,7 @@ namespace EwelinkNet
             return region;
         }
 
-        public void StoreCredenditalsFromFile(string filename = "credentials.json") => System.IO.File.WriteAllText(filename, Credentials.AsJson());
+        public void StoreCredenditalsToFile(string filename = "credentials.json") => System.IO.File.WriteAllText(filename, Credentials.AsJson());
 
         public void RestoreCredenditalsFromFile(string filename = "credentials.json") => Credentials = System.IO.File.ReadAllText(filename).FromJson<Credentials>();
 

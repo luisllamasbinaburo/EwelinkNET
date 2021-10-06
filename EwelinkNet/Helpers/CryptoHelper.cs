@@ -12,7 +12,7 @@ namespace EwelinkNet.Helpers
         internal static string MakeAuthorizationSign(string message)
         {
             var encoding = new UTF8Encoding();
-            byte[] keyByte = encoding.GetBytes("6Nz4n0xA8s8qdxQf2GqurZj2Fs55FUvM");
+            byte[] keyByte = encoding.GetBytes(Constants.AppData.APP_SECRET);
 
             byte[] messageBytes = encoding.GetBytes(message);
             using (var hmacsha256 = new HMACSHA256(keyByte))

@@ -42,7 +42,7 @@ namespace EwelinkNet.Tests
             output.WriteLine(credentials.AsJson());
         }
 
-              [Fact]
+        [Fact]
         public async Task GetRegion()
         {
             var ewelink = new Ewelink(Email, Password);
@@ -57,7 +57,7 @@ namespace EwelinkNet.Tests
 
             var ewelink = new Ewelink(Email, Password, Region);
             await ewelink.GetCredentials();
-            ewelink.StoreCredenditalsFromFile();
+            ewelink.StoreCredenditalsToFile();
         }
 
         [Fact]

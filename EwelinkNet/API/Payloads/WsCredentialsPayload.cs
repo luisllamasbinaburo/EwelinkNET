@@ -17,6 +17,9 @@ namespace EwelinkNet.Payloads
         public string version { get; internal set; }
         public string nonce { get; internal set; }
         public string apkVesrion { get; internal set; }
+
+        public string appid { get; internal set; }
+
         public string os { get; internal set; }
         public string at { get; internal set; }
         public string apikey { get; internal set; }
@@ -35,6 +38,7 @@ namespace EwelinkNet.Payloads
             version = AppData.VERSION;
             nonce = EwelinkHelper.MakeNonce();
             apkVesrion = AppData.APK_VERSION;
+            appid = AppData.APP_ID;
             os = AppData.OS;
             at = accessToken;
             apikey = apiKey;

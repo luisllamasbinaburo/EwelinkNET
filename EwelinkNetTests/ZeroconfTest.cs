@@ -71,5 +71,18 @@ namespace EwelinkNet.Tests
 
             await device.TurnOnLAN();
         }
+
+        [Fact]
+        public async void LANTurnOFF()
+        {
+            var ewelink = new Ewelink("", "", "");
+            ewelink.RestoreDevicesFromFile();
+            ewelink.RestoreCredenditalsFromFile();
+            ewelink.RestoreArpTableFromFile();
+
+            var device = ewelink.Devices.First(x => x.deviceid == deviceId) as SwitchDevice;
+
+            await device.TurnOffLAN();
+        }
     }
 }
