@@ -24,7 +24,7 @@ namespace EwelinkNet.Payloads
         public string appVersion { get; internal set; }
 
 
-        internal CredentialsPayload(string email, string password)
+        internal CredentialsPayload(string email, string password, string APP_ID)
         {
             this.email = email;
             this.password = password;
@@ -32,7 +32,7 @@ namespace EwelinkNet.Payloads
             ts = EwelinkHelper.MakeTimestamp();
             nonce = EwelinkHelper.MakeNonce();
             os = AppData.OS;
-            appid = AppData.APP_ID;
+            appid = APP_ID;
             imei = EwelinkHelper.MakeFakeImei();
             model = AppData.MODEL;
             romVersion = AppData.ROM_VERSION;

@@ -9,10 +9,10 @@ namespace EwelinkNet.Helpers
     public static class CryptoHelper
     {
 
-        internal static string MakeAuthorizationSign(string message)
+        internal static string MakeAuthorizationSign(string message, string APP_SECRET)
         {
             var encoding = new UTF8Encoding();
-            byte[] keyByte = encoding.GetBytes(Constants.AppData.APP_SECRET);
+            byte[] keyByte = encoding.GetBytes(APP_SECRET);
 
             byte[] messageBytes = encoding.GetBytes(message);
             using (var hmacsha256 = new HMACSHA256(keyByte))

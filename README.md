@@ -41,6 +41,15 @@ And later restore with,
 ewelink.RestoreCredenditalsFromFile();
 ```
 
+### Custom API_ID
+
+EwelinkNET uses a hardcoded API_ID and API_SECRET to authenticate. But Ewelink is changing their Auth process. So you can log into official https://dev.ewelink.cc/ and generate your own API_ID and API_SECRET
+
+```c#
+var ewelink = new Ewelink(Email, Password, YOUR_API_ID, YOUR_API_SECRET, Region);
+var credentials = await ewelink.GetCredentials();
+```
+
 ### Get Devices
 
 Get Devices registered in you Ewelink account.

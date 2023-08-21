@@ -23,7 +23,7 @@ namespace EwelinkNet.API
         internal bool IsConnected { get; private set; } = false;
 
      
-        public void Connect(string accessToken, string apiKey, string region)
+        public void Connect(string accessToken, string apiKey, string region, string APP_ID)
         {
             var url = Constants.URLs.GetWebsocketUrl(region);
             websocket = new WebSocketSharp.WebSocket(url);
@@ -36,7 +36,7 @@ namespace EwelinkNet.API
             websocket.Connect();
             IsConnected = true;
 
-            var wsCredentialsPayload = new WsCredentialsPayload(accessToken, apiKey);
+            var wsCredentialsPayload = new WsCredentialsPayload(accessToken, apiKey, APP_ID);
             websocket.Send(wsCredentialsPayload.AsJson());
         }
 

@@ -14,13 +14,13 @@ namespace EwelinkNet.API
 {
     public static class Rest
     {
-        public static async Task<string> GetCredentials(string url, string email, string password)
+        public static async Task<string> GetCredentials(string url, string email, string password, string APP_ID, string APP_SECRET)
         {
             var client = new RestClient(url);
 
-            var payload = new Payloads.CredentialsPayload(email, password);
+            var payload = new Payloads.CredentialsPayload(email, password, APP_ID);
             var body = JsonConvert.SerializeObject(payload);
-            var signature = CryptoHelper.MakeAuthorizationSign(body);
+            var signature = CryptoHelper.MakeAuthorizationSign(body, APP_SECRET);
 
             var request = new RestRequest("/user/login", Method.POST);
             request.AddParameter("application/json; charset=utf-8", body, ParameterType.RequestBody);
@@ -32,7 +32,7 @@ namespace EwelinkNet.API
             return response.Content;
         }
 
-        public static async Task<string> GetDevices(string url, string accessToken)
+        public static async Task<string> GetDevices(string url, string accessToken, string APP_ID)
         {
             var client = new RestClient(url);
 
@@ -42,7 +42,7 @@ namespace EwelinkNet.API
             request.AddQueryParameter("getTags", "1");
             request.AddQueryParameter("version", AppData.VERSION);
             request.AddQueryParameter("ts", EwelinkHelper.MakeTimestamp());
-            request.AddQueryParameter("appid", AppData.APP_ID);
+            request.AddQueryParameter("appid", APP_ID);
             request.AddQueryParameter("imei", EwelinkHelper.MakeFakeImei());
             request.AddQueryParameter("os", AppData.OS );
             request.AddQueryParameter("model", AppData.MODEL );

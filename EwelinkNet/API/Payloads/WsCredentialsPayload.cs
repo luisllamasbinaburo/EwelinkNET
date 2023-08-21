@@ -29,7 +29,7 @@ namespace EwelinkNet.Payloads
         public string sequence { get; internal set; }
 
 
-        internal WsCredentialsPayload(string accessToken, string apiKey)
+        internal WsCredentialsPayload(string accessToken, string apiKey, string APP_ID)
         {
             var seq = EwelinkHelper.MakeSequence();
 
@@ -38,7 +38,7 @@ namespace EwelinkNet.Payloads
             version = AppData.VERSION;
             nonce = EwelinkHelper.MakeNonce();
             apkVesrion = AppData.APK_VERSION;
-            appid = AppData.APP_ID;
+            appid = APP_ID;
             os = AppData.OS;
             at = accessToken;
             apikey = apiKey;

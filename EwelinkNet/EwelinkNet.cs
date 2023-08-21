@@ -27,6 +27,10 @@ namespace EwelinkNet
         public string at { get; set; }
         public string apikey { get; set; }
 
+        public string app_id { get; set; }
+
+        public string app_secret { get; set; }
+
 
 
         [JsonIgnore]
@@ -46,8 +50,20 @@ namespace EwelinkNet
         {
             this.email = email;
             this.password = password;
+            this.app_id = Constants.AppData.APP_SECRET;
+            this.app_secret = Constants.AppData.APP_SECRET;
             this.region = region;
         }
+
+        public Ewelink(string email, string password, string app_id, string app_secret, string region = "us")
+        {
+            this.email = email;
+            this.password = password;
+            this.app_id = app_id;
+            this.app_secret = app_secret;
+            this.region = region;
+        }
+
 
         public Ewelink(string credentialsFile)
         {
@@ -58,7 +74,7 @@ namespace EwelinkNet
         {
             var url = Constants.URLs.GetApiUrl(region);
 
-            var response = await API.Rest.GetCredentials(url, email, password);
+            var response = await API.Rest.GetCredentials(url, email, password, app_id, app_secret);
             Credentials = JsonConvert.DeserializeObject<Credentials>(response);
             return Credentials;
         }
@@ -67,7 +83,7 @@ namespace EwelinkNet
         {
             var url = Constants.URLs.GetApiUrl("us");
 
-            var response = await API.Rest.GetCredentials(url, email, password);
+            var response = await API.Rest.GetCredentials(url, email, password, app_id, app_secret);
             dynamic credentials = JsonConvert.DeserializeObject<ExpandoObject>(response);
             region = credentials.region;
             return region;
@@ -88,7 +104,7 @@ namespace EwelinkNet
         {
             var url = Constants.URLs.GetApiUrl(region);
 
-            var response = await API.Rest.GetDevices(url, Credentials.at);
+            var response = await API.Rest.GetDevices(url, Credentials.at, app_id);
             CreateDevices(response);
         }
 
@@ -106,15 +122,11 @@ namespace EwelinkNet
             deviceCache = Devices.ToDictionary(x => x.deviceid);
         }
 
-        private void InitializeWebSocket()
-        { 
-            webSocket.OnMessage += handleWebsocketResponse;
-        }
-
         public void OpenWebSocket()
         {
             if (webSocket.IsConnected) return;
-            webSocket.Connect(Credentials.at, Devices[0].apikey, Credentials.region);
+            webSocket.Connect(Credentials.at, Devices[0].apikey, Credentials.region, app_id);
+            webSocket.OnMessage += handleWebsocketResponse;
         }
 
         private void handleWebsocketResponse(object sender, EventWebsocketMessage e)
@@ -132,6 +144,7 @@ namespace EwelinkNet
         public void CloseWebSocket()
         {
             if (!webSocket.IsConnected) return;
+            webSocket.OnMessage -= handleWebsocketResponse;
             webSocket.Disconnect();
         }
     }
